@@ -1,0 +1,174 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Contribution Guidelines" />
+
+## Contribution Guidelines
+
+### Code Conventions
+
+#### General
+
+- Use const instead of function. (**arrow function** instead named)
+- **Export default on the bottom** of the line of codes.
+- Props is named as is (no need to be prefixed with component name).
+- No need to import React. (React 17+).
+- Prioritize using Tailwind classes, before making custom CSS in CSS modules.
+- Use `isSomething` for Boolean.
+  > \*Can be simple condition or event function of checking something
+- Use `onEvent` for Event props.
+  > \*i.e. Prefix handle of event function with `onChangeUserData`, `onSubmitUserData`.
+- Use `kebab-case` for URL or slug.
+  > \*i.e. `?/first-step-onboarding`
+- Query params use `snake_case`.
+  > \*i.e. `/path?step=1&sub_step=2`
+
+#### Typing and component name convention
+
+- For components, better rename the components to `CardProductSpecial` or something else that are more descriptive. Don't just use `ProductSpecial` or `Product`.
+  > Rule of thumb: in a pinch, use the suffix `ComponentSomething`.
+- Functional (react) component, files, and folder name use PascalCase.
+
+- Basic function or hooks using camelCase.
+
+- Attribute field from API use snake_case.
+
+### Which folder should I put my component in?
+
+If you start with an empty project and you have design system, then you can start with the components that are in the design system.
+If you don't have a design system, you can start with common components and put the component inside the `components` folder.
+For example button, input field, etc. These components are expected to be used in multiple places in the application.
+You should not put the component that only used in one or two places in this `components` folder.
+You also should not put the component that has a specific business logic in this `components` folder.
+You can put these components in the folder where they are used in `routes` folder.
+If one day you need to use this component in more that two places, you can move it to the `components` folder if it is **[pure component](https://react.dev/learn/keeping-components-pure)**,
+or you can move it to the `features` folder if it has a specific business logic.
+
+["Duplication is far cheaper than the wrong abstraction"](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction) - Sandi Metz
+
+### What is the `features` folder?
+
+The `features` folder is where you put the **reusable components that have specific business logic**.
+For example, you create a collaboration app that has several views such as Timeline, Backlog, Board, User Task List, etc.
+`UserTaskDetail` is a component that shows the detail of a user task. A user task detail can be viewed from each view as a sidebar detail or a modal detail.
+This means you can put the `UserTaskDetail` component in the `features` folder because it has certain business logic and can be reused in many places.
+
+### What is the `hooks` folder for?
+
+If `helpers` folder is for the reusable functions, then `hooks` folder is for the **reusable stateful functions** or [custom hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+For example, you have multiple table components that have the same sorting and filtering logic. You can put the sorting and filtering logic in a custom hook and put it in the `hooks` folder.
+
+### What is the `contexts` folder?
+
+`contexts` folder is intended for the **[app level context](https://react.dev/learn/passing-data-deeply-with-context#before-you-use-context)**.
+For example, you have a theme context, user context, etc.
+You can put the context provider and context consumer in this folder.
+
+### Should I put all type definition in the `types` folder?
+
+No. You should put the component specific type definition in the same folder as the component.
+This folder generally contains data types from external services or represents the application data model.
+
+### How to write documentation for the component?
+
+- Create a story file alongside the component file with the filename `ComponentName.stories.tsx`.
+- Import your component, then define the metadata and the story.
+
+```javascript
+import type { Meta, StoryObj } from '@storybook/react';
+
+import ComponentName from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  component: ComponentName,
+};
+
+export default meta;
+type Story = StoryObj<typeof ComponentName>;
+
+export const Default: Story = {
+  args: {
+    // define the component props here
+  },
+};
+
+export const OtherStateOfComponent: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    // define the specific state of the component here
+  },
+};
+```
+
+- You can use the `render` attribute to control how the component is rendered in the story. You can also use it when you need to demonstrate the stateful behavior of the component.
+
+```javascript
+import { useArgs } from '@storybook/preview-api'
+
+...
+
+export const Default: Story = {
+  args: {
+    value: "",
+    // other props
+  },
+  render: (args) => {
+    const [{ value }, updateArgs] = useArgs<{ value: string }>()
+
+    return <input {...args} value={value} onChange={(e) => updateArgs({ value: e.target.value })}/>
+  }
+}
+```
+
+- You can add `tags: ['autodocs']` to the story metadata to enable the [auto-generated documentation](https://storybook.js.org/docs/writing-docs/autodocs) feature.
+- If you want to create documentation for a component that uses react-router, you need to add `decorators: [withRouter]` to the story metadata. More information about this addon can be found [here](https://storybook.js.org/addons/storybook-addon-react-router-v6/).
+- By default, storybook add extra padding in the preview panel. You can configure the [story layout](https://storybook.js.org/docs/configure/story-layout) by changing the `parameters.layout` attribute in the story metadata.
+- You can also set a default viewport for the story by adding `parameters.viewport` attribute in the story metadata. For example:
+
+```javascript
+
+const meta: Meta<typeof ComponentName> = {
+  component: ComponentName,
+  decorators: [withRouter],
+  parameters: {
+    layout: 'fullscreen', // will remove extra padding in the preview panel
+    viewport: {
+      defaultViewport: 'mobile1'
+    }
+  }
+};
+```
+
+- Sometimes we want to demonstrate a component behavior based on the service response. You can mock the service response using [Mock Service Worker](https://storybook.js.org/addons/msw-storybook-addon/).
+
+```javascript
+import { rest } from 'msw'
+
+...
+
+export const Success: Story = {
+  parameters:{
+    msw: [
+      rest.get('https://api.example.com/data/detail', (req, res, ctx) => {
+        return res(ctx.json({ id: 1, name: 'John Doe'})) // your service contract
+      }),
+      rest.post('https://api.example.com/data', (req, res, ctx) => {
+        return res(ctx.json({ message: 'Your data has been submitted' }))
+      })
+    ]
+  }
+}
+
+export const InvalidData: Story = {
+  parameters:{
+    msw: [
+      rest.post('https://api.example.com/data', (req, res, ctx) => {
+        return res(ctx.status(400), ctx.json({ message: 'Invalid data' }))
+      })
+    ]
+  }
+}
+
+```
+
+[Writing stories](https://storybook.js.org/docs/writing-stories)

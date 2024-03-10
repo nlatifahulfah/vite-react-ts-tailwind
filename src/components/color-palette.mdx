@@ -1,0 +1,26 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/blocks'
+
+<Meta title="Styles / Color Palette" />
+
+# Color Palette
+
+This color theme [extends](https://tailwindcss.com/docs/theme#extending-the-default-theme) from the default Tailwind CSS color palette. You can customize the color theme in `tailwind.config.js`.
+
+<ColorPalette>
+  <ColorItem title="Primary" colors={{ main: '#066666' }} />
+  <ColorItem title="Secondary" colors={{ main: '#789906' }} />
+  <ColorItem
+    title="Gray"
+    colors={{
+      100: '#F8F9FA',
+      200: '#E9ECEF',
+      300: '#DEE2E6',
+      400: '#CED4DA',
+      500: '#ADB5BD',
+      600: '#6C757D',
+      700: '#495057',
+      800: '#343A40',
+      900: '#212529'
+    }}
+  />
+</ColorPalette>

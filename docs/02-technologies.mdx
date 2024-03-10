@@ -1,0 +1,213 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Tools and Technologies" />
+
+## Tools and Technologies
+
+<br />
+### ⚛️ React
+
+[React](https://react.dev/) is a JavaScript library for building user interfaces.
+
+### 🦕 TypeScript
+
+[TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles to plain JavaScript.
+
+### 🎨 Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework for rapidly building custom designs.
+
+<table>
+  <tr>
+    <th>Supporting Library</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>[tailwind-merge](https://github.com/dcastil/tailwind-merge)</td>
+    <td>
+      Utility function to efficiently merge Tailwind CSS classes in JS without
+      style conflicts.
+    </td>
+  </tr>
+  <tr>
+    <td>[clsx](https://github.com/lukeed/clsx)</td>
+    <td>Utility for constructing className strings conditionally.</td>
+  </tr>
+  <tr>
+    <td>[class-variance-authority](https://github.com/joe-bell/cva)</td>
+    <td>
+      Utility to help creating component variants. [Sample
+      usage](https://github.com/joe-bell/cva/blob/main/examples/react-with-tailwindcss/src/components/button/button.tsx).
+    </td>
+  </tr>
+</table>
+
+### React Query
+
+[React Query](https://tanstack.com/query/latest/docs/framework/react/overview) is a data-fetching library.
+
+### Axios
+
+[Axios](https://axios-http.com/) is a promise-based HTTP client for the browser and Node.js.
+
+### ⚡ Vite
+
+[Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+
+<table>
+  <tr>
+    <th>Plugin</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+    </td>
+    <td>
+      We use `@vitejs/plugin-react-swc` instead of `@vitejs/plugin-react` to
+      speed up Vite dev server.
+    </td>
+  </tr>
+  <tr>
+    <td>[vite-plugin-svgr](https://www.npmjs.com/package/vite-plugin-svgr)</td>
+    <td>
+      Vite plugin to transform SVGs into React components. Uses
+      [svgr](https://github.com/gregberge/svgr) under the hood.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [vite-plugin-linter](https://www.npmjs.com/package/vite-plugin-linter)
+    </td>
+    <td>
+      Vite plugin to lint files and show the linter output in the Vite output
+      and the browser console.
+    </td>
+  </tr>
+</table>
+
+[Why does Vite create two TypeScript config files: tsconfig.json and tsconfig.node.json?](https://stackoverflow.com/questions/72027949/why-does-vite-create-two-typescript-config-files-tsconfig-json-and-tsconfig-nod)
+
+### 🧲 ESLint
+
+[ESLint](https://eslint.org/) is a static code analysis tool for identifying problematic patterns found in JavaScript code.
+
+<table>
+  <tr>
+    <th>Plugin</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin)
+    </td>
+    <td>
+      ESLint plugin used to load in custom rules and rule configurations lists
+      from typescript-eslint.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser/)
+    </td>
+    <td>
+      ESLint plugin used to parse TypeScript code into ESLint-compatible nodes,
+      as well as provide backing TypeScript programs.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
+    </td>
+    <td>ESLint plugin with rules that help validate proper React usage.</td>
+  </tr>
+  <tr>
+    <td>
+      [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+    </td>
+    <td>
+      ESLint plugin with rules that help validate proper React Hooks usage.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [eslint-plugin-react-refresh](https://github.com/ArnaudBarre/eslint-plugin-react-refresh)
+    </td>
+    <td>
+      Validate that your components can safely be updated with fast refresh.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [eslint-plugin-storybook](https://github.com/storybookjs/eslint-plugin-storybook)
+    </td>
+    <td>Best practice rules for Storybook</td>
+  </tr>
+  <tr>
+    <td>
+      [@tanstack/eslint-plugin-query](https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query)
+    </td>
+    <td>This plugin is used to enforce best practices for TanStack Query.</td>
+  </tr>
+</table>
+
+### 🧹 Prettier
+
+[Prettier](https://prettier.io/) is an automatic code formatter.
+
+<table>
+  <tr>
+    <th>Plugin</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      [@ianvs/prettier-plugin-sort-imports](https://github.com/IanVS/prettier-plugin-sort-imports)
+    </td>
+    <td>Prettier plugin to sort import statements</td>
+  </tr>
+  <tr>
+    <td>
+      [prettier-plugin-organize-imports](https://github.com/simonhaenisch/prettier-plugin-organize-imports)
+    </td>
+    <td>Remove unused imports</td>
+  </tr>
+</table>
+
+### 📚 Storybook
+
+[Storybook](https://storybook.js.org/) is an open source tool for developing UI components in isolation.
+
+<table>
+  <tr>
+    <th>Addon</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      [@storybook/addon-essentials](https://storybook.js.org/integrations/tag/essentials/)
+    </td>
+    <td>Pre-installed addons that power the core Storybook experience.</td>
+  </tr>
+  <tr>
+    <td>
+      [@storybook/addon-links](https://storybook.js.org/addons/@storybook/addon-links/)
+    </td>
+    <td>
+      The Storybook Links addon can be used to create links that navigate
+      between stories in Storybook.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      [@storybook/addon-interactions](https://storybook.js.org/addons/@storybook/addon-interactions/)
+    </td>
+    <td>Automate, test and debug user interactions.</td>
+  </tr>
+  <tr>
+    <td>
+      [@storybook/addon-a11y](https://storybook.js.org/addons/@storybook/addon-a11y/)
+    </td>
+    <td>Test component compliance with web accessibility standards.</td>
+  </tr>
+</table>

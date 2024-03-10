@@ -1,0 +1,75 @@
+{
+  "name": "vite-react-ts-tailwind",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepare": "husky",
+    "test": "vitest",
+    "prettier": "prettier --write --ignore-unknown ."
+  },
+  "dependencies": {
+    "@storybook/react": "^7.6.14",
+    "@tanstack/react-query": "^5.24.1",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.17",
+    "axios": "^1.6.7",
+    "clsx": "^2.1.0",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.50.1",
+    "react-router-dom": "^6.22.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0",
+    "vite-plugin-svgr": "^4.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@storybook/addon-a11y": "^7.6.17",
+    "@storybook/addon-essentials": "^7.6.14",
+    "@storybook/addon-interactions": "^7.6.14",
+    "@storybook/addon-links": "^7.6.14",
+    "@storybook/blocks": "^7.6.14",
+    "@storybook/react-vite": "^7.6.14",
+    "@storybook/test": "^7.6.14",
+    "@tanstack/eslint-plugin-query": "^5.20.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "msw": "^1.3.2",
+    "msw-storybook-addon": "^1.10.0",
+    "prettier": "3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "storybook": "^7.6.14",
+    "storybook-addon-react-router-v6": "^2.0.10",
+    "vite-plugin-linter": "^2.1.1",
+    "vitest": "^1.3.1"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "src/**/*.{ts,tsx}": "yarn lint"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}

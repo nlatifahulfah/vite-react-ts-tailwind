@@ -1,0 +1,7 @@
+.husky
+.storybook
+cypress
+node_modules
+
+**/*.stories.js
+**/*.test.js
